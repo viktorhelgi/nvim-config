@@ -6,9 +6,21 @@ local CmpConfigSources = require("cmp.config.sources")
 -- local lspkind = require('lspkind')
 
 -- Set up nvim-cmp.
-local cmp = require('cmp')
-local lspkind = require("lspkind.init")
+local cmp = require('cmp.init')
+local types = require('cmp.types')
+
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
+local lspkind = require("lspkind")
+
 if cmp ~= nil then
+
+    cmp.event:on(
+      'confirm_done',
+      cmp_autopairs.on_confirm_done()
+    )
+
     cmp.setup({
         -- snippet = {
         --     -- REQUIRED - you must specify a snippet engine
@@ -26,13 +38,14 @@ if cmp ~= nil then
         mapping = cmp.mapping.preset.insert({
             ['<C-b>'] = cmp.mapping.scroll_docs(-4),
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-Space>'] = cmp.mapping.complete({}),
+            ['<C-o>'] = cmp.mapping.complete({}),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
-            { name = 'vsnip' }, -- For vsnip users.
+            -- { name = 'vsnip' }, -- For vsnip users.
             -- { name = 'luasnip' }, -- For luasnip users.
             -- { name = 'ultisnips' }, -- For ultisnips users.
             -- { name = 'snippy' }, -- For snippy users.
@@ -69,6 +82,7 @@ if cmp ~= nil then
     })
 
 
+    ---@type cmp.ConfigSchema
     local cmp_setup_rust = {
         mapping = cmp.mapping.preset.insert({
             ['<C-u>'] = cmp.mapping.scroll_docs(-4),
@@ -76,7 +90,7 @@ if cmp ~= nil then
             ['<C-Space>'] = cmp.mapping.complete({}),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<Tab>'] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Insert,
+                behavior = types.cmp.ConfirmBehavior.Insert,
                 select = true,
             }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
@@ -99,7 +113,7 @@ if cmp ~= nil then
                 vim_item.menu = ({
                     buffer = "「Buffer」",
                     nvim_lsp = "「Lsp」",
-                    luasnip = "「luasnip」",
+                    -- luasnip = "「luasnip」",
                 })[entry.source.name]
 
                 vim_item.menu = entry:get_completion_item().detail
@@ -108,14 +122,13 @@ if cmp ~= nil then
         }
     }
     cmp.setup.filetype('rust', cmp_setup_rust)
-
+    cmp.setup.filetype('lua', cmp_setup_rust)
 
     -- Set up lspconfig.
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-    require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
-        capabilities = capabilities
-    }
+    -- require('lspconfig').setup {
+    --     capabilities = capabilities
+    -- }
 
     local lspkind_configs = {
         -- defines how annotations are shown
@@ -146,3 +159,5 @@ if cmp ~= nil then
 
     require('lspkind').init(lspkind_configs)
 end
+
+

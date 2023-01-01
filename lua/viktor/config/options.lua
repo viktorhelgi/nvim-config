@@ -13,6 +13,11 @@ vim.o.tabstop = 4 			-- 4 tabstop
 vim.o.shiftwidth = 4
 vim.o.expandtab = true    	-- tabs -> spaces
 vim.o.swapfile = false
+vim.o.wrap = false
+
+
+vim.opt.ignorecase = true
+vim.opt.undofile = true		-- file undo history preserved outside current session
 
 
 
