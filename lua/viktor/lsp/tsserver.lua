@@ -18,6 +18,7 @@ require('lspconfig').tsserver.setup({
         vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
         vim.cmd("set colorcolumn=101")
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        vim.keymap.set('i', '<C-space>', '<C-x><C-o>')
+        vim.keymap.set('n', '\'/',  '<cmd>e styles/Home.module.css<cr>')
     end
 })

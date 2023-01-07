@@ -20,4 +20,4 @@ vim.opt.ignorecase = true
 vim.opt.undofile = true		-- file undo history preserved outside current session
 
 
-
+vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')

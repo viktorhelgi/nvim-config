@@ -38,10 +38,11 @@ if cmp ~= nil then
         mapping = cmp.mapping.preset.insert({
             ['<C-b>'] = cmp.mapping.scroll_docs(-4),
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete({}),
+            -- ['<C-Space>'] = cmp.mapping.complete({}),
+            -- cmp.mapping.
             ['<C-o>'] = cmp.mapping.complete({}),
             ['<C-e>'] = cmp.mapping.abort(),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
@@ -87,7 +88,7 @@ if cmp ~= nil then
         mapping = cmp.mapping.preset.insert({
             ['<C-u>'] = cmp.mapping.scroll_docs(-4),
             ['<C-d>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete({}),
+            -- ['<C-Space>'] = cmp.mapping.complete({}),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<Tab>'] = cmp.mapping.confirm({
                 behavior = types.cmp.ConfirmBehavior.Insert,
@@ -123,6 +124,8 @@ if cmp ~= nil then
     }
     cmp.setup.filetype('rust', cmp_setup_rust)
     cmp.setup.filetype('lua', cmp_setup_rust)
+    cmp.setup.filetype('tailwindcss', cmp_setup_rust)
+    cmp.setup.filetype('tsserver', cmp_setup_rust)
 
     -- Set up lspconfig.
     -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

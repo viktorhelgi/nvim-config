@@ -186,8 +186,8 @@ require('viktor.lib.funcs').cmd_mappings('n',
     })
 
 require('viktor.lib.funcs').cmd_mappings('i', {
-    --    ['<C-o>'] = '<C-x><C-o>',
-    -- ['<C-o>'] = '[cmd] lua vim.lsp.buf.completion()',
+    ['<C-space>'] = '<C-x><C-o>',
+    ['<C-o>'] = '<C-x><C-o>',
     ['<C-f>'] = '<C-x><C-f>',
 })
 
