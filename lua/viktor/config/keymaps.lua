@@ -63,6 +63,7 @@ require('viktor.lib.funcs').cmd_mappings('n',
                 ['s'] = ':vimgrep /\\.<C-r>l/g %<CR>:Trouble quickfix<CR>',
             },
             ['e'] = {
+                ['|'] = "[cmd] lua require('viktor.vim.libs').conf(vim.fn.expand('%'))",
                 ['c'] = '[cmd] cd %:p:h',
                 ['f'] = {
                     ['i'] = '[cmd] set foldmethod=indent',
