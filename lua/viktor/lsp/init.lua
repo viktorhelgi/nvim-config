@@ -2,6 +2,7 @@
 
 
 return {
+    require('viktor.lsp.pyright'),
 	require('viktor.lsp.rust'),
     require('viktor.lsp.lua'),
     require('viktor.lsp.cpp'),

@@ -1,13 +1,15 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+-- vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
 
 
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/plenary.nvim'
+use "lewis6991/hover.nvim"
+
 
     -- {{{ Package Managers
     use 'wbthomason/packer.nvim'
@@ -21,6 +23,7 @@ return require('packer').startup(function(use)
     use 'jacoborus/tender.vim'
     use 'folke/tokyonight.nvim'
     use 'sainnhe/gruvbox-material'
+    use 'mfussenegger/nvim-lint'
     -- }}}
     -- {{{ Looks
     use 'nvim-tree/nvim-web-devicons'
@@ -209,10 +212,11 @@ return require('packer').startup(function(use)
         requires = {
             'nvim-lua/plenary.nvim',
             'akinsho/toggleterm.nvim',
-            'nvim-telescope/telescope.nvim/',
+            -- 'nvim-telescope/telescope.nvim/',
         },
         -- To enable YAML config support
         rocks = 'lyaml',
     }
 
 end)
+
